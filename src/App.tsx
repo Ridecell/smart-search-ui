@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Search, Loader2, Bug } from "lucide-react";
+import { Search, Loader2, Bug, Sparkles } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -102,6 +102,27 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted/20 flex flex-col p-4">
+      {/* AI Magic Wave Animation */}
+      {loading && (
+        <div className="ai-wave">
+          <div className="wave"></div>
+          <div className="wave"></div>
+          <div className="wave"></div>
+          {/* Sparkles */}
+          {[...Array(12)].map((_, i) => (
+            <Sparkles
+              key={i}
+              className="sparkle text-primary"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 1.5}s`,
+                fontSize: `${Math.random() * 20 + 10}px`
+              }}
+            />
+          ))}
+        </div>
+      )}
       {/* Mock Response Toggle - Top Right */}
       <div className="absolute top-4 right-4 flex items-center space-x-2 bg-card/90 backdrop-blur-sm border rounded-lg px-3 py-2">
         <Bug className="h-4 w-4 text-muted-foreground" />
@@ -124,9 +145,6 @@ function App() {
               </div>
             </div>
             <h1 className="text-4xl font-bold text-foreground">Smart Search</h1>
-            <p className="text-muted-foreground">
-              Enter a VIN to get comprehensive vehicle information
-            </p>
             {debugMode && (
               <p className="text-xs text-amber-600 dark:text-amber-400">
                 Mock response mode active - returning mock data
@@ -141,7 +159,7 @@ function App() {
                 type="text"
                 value={vin}
                 onChange={(e) => setVin(e.target.value)}
-                placeholder="Smart Search by VIN..."
+                placeholder="Search by VIN for a smart summary..."
                 className="w-full px-6 py-4 text-lg bg-card border border-input rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200 pr-14"
                 disabled={loading}
               />
@@ -161,11 +179,13 @@ function App() {
 
           {/* Loading State */}
           {loading && (
-            <div className="text-center space-y-3 animate-in fade-in-0 slide-in-from-bottom-4 duration-300">
-              <div className="flex justify-center">
+            <div className="text-center space-y-3 animate-in fade-in-0 slide-in-from-bottom-4 duration-300 relative z-10">
+              <div className="flex justify-center items-center gap-2">
+                <Sparkles className="h-6 w-6 text-primary animate-pulse" />
                 <Loader2 className="h-8 w-8 animate-spin text-primary" />
+                <Sparkles className="h-6 w-6 text-primary animate-pulse" />
               </div>
-              <p className="text-muted-foreground">Searching for vehicle information...</p>
+              <p className="text-muted-foreground font-medium">AI is analyzing vehicle data...</p>
             </div>
           )}
 
