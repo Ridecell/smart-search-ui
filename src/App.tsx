@@ -145,7 +145,7 @@ function App() {
               </div>
             </div>
             <h1 className="text-4xl font-bold text-foreground">Smart Search</h1>
-            {debugMode && (
+            {debugMode && !result && !loading && (
               <p className="text-xs text-amber-600 dark:text-amber-400">
                 Mock response mode active - returning mock data
               </p>
