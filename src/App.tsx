@@ -144,13 +144,28 @@ function App() {
                 value={vin}
                 onChange={(e) => setVin(e.target.value)}
                 placeholder="Search by VIN for a smart summary..."
-                className="w-full px-6 py-4 text-lg bg-card border border-input rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200 pr-14"
+                className="w-full px-6 py-4 text-lg bg-card border border-input rounded-full shadow-sm focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-200 pr-14"
+                style={{ '--tw-ring-color': '#6cc04a' } as React.CSSProperties}
                 disabled={loading}
               />
               <button
                 type="submit"
                 disabled={loading || !vin.trim()}
-                className="absolute right-2 top-1/2 -translate-y-1/2 p-2.5 bg-primary text-primary-foreground rounded-full disabled:opacity-50 disabled:cursor-not-allowed hover:bg-primary/90 transition-colors"
+                className="absolute right-2 top-1/2 -translate-y-1/2 p-2.5 rounded-full disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                style={{ 
+                  backgroundColor: loading || !vin.trim() ? '#6cc04a80' : '#6cc04a',
+                  color: 'white'
+                }}
+                onMouseEnter={(e) => {
+                  if (!loading && vin.trim()) {
+                    e.currentTarget.style.backgroundColor = '#5ca93e';
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (!loading && vin.trim()) {
+                    e.currentTarget.style.backgroundColor = '#6cc04a';
+                  }
+                }}
               >
                 {loading ? (
                   <Loader2 className="h-5 w-5 animate-spin" />
