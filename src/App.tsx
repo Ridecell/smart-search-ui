@@ -122,7 +122,7 @@ function App() {
       </div>
 
       {/* Main Content */}
-      <div className={`flex-1 flex flex-col items-center ${!result && !loading ? 'justify-center' : 'justify-start pt-8'}`}>
+      <div className={`flex-1 flex flex-col items-center ${!result && !loading ? 'justify-center pb-20' : 'justify-start pt-8'}`}>
         <div className={`w-full max-w-6xl ${!result && !loading ? '' : 'space-y-8'}`}>
           {/* Title - Only show when no results */}
           {!result && !loading && (
@@ -194,7 +194,7 @@ function App() {
             <div className="flex gap-6 animate-in fade-in-0 slide-in-from-bottom-4 duration-300">
               {/* Profile Tile or Skeleton */}
               {loading ? (
-                <div className="bg-card border rounded-lg p-5 w-[320px] flex-shrink-0 h-fit">
+                <div className="bg-card border rounded-lg p-5 w-[320px] flex-shrink-0 h-fit shadow-md">
                   <div className="space-y-3">
                     <div>
                       <div className="h-3 w-8 shimmer rounded mb-1"></div>
@@ -223,7 +223,7 @@ function App() {
                   </div>
                 </div>
               ) : result.profile && (
-                <div className="bg-card border rounded-lg p-5 w-[320px] flex-shrink-0 h-fit">
+                <div className="bg-card border rounded-lg p-5 w-[320px] flex-shrink-0 h-fit shadow-md">
                   <div className="space-y-3">
                     <div>
                       <p className="text-xs text-muted-foreground">VIN</p>
@@ -312,7 +312,7 @@ function App() {
               
               {/* Main Content or Skeleton */}
               {loading ? (
-                <div className="bg-card border rounded-lg p-6 space-y-4 flex-1">
+                <div className="bg-card border rounded-lg p-6 space-y-4 flex-1 shadow-md">
                   <div className="h-6 w-48 shimmer rounded mb-4"></div>
                   <div className="space-y-3">
                     <div className="h-4 w-full shimmer rounded"></div>
@@ -330,7 +330,7 @@ function App() {
                   </div>
                 </div>
               ) : (
-                <div className="bg-card border rounded-lg p-6 space-y-4 flex-1">
+                <div className="bg-card border rounded-lg p-6 space-y-4 flex-1 shadow-md">
                   <h2 className="text-xl font-semibold text-foreground">Vehicle Information</h2>
                   <div className="prose prose-sm prose-slate dark:prose-invert max-w-none">
                 {result.summary ? (
