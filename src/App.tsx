@@ -183,7 +183,6 @@ function App() {
               {/* Profile Tile or Skeleton */}
               {loading ? (
                 <div className="bg-card border rounded-lg p-5 w-[320px] flex-shrink-0 h-fit">
-                  <div className="h-4 w-32 shimmer rounded mb-4"></div>
                   <div className="space-y-3">
                     <div>
                       <div className="h-3 w-8 shimmer rounded mb-1"></div>
@@ -213,7 +212,6 @@ function App() {
                 </div>
               ) : result.profile && (
                 <div className="bg-card border rounded-lg p-5 w-[320px] flex-shrink-0 h-fit">
-                  <h3 className="text-sm font-semibold text-muted-foreground mb-4 uppercase tracking-wider">Vehicle Profile</h3>
                   <div className="space-y-3">
                     <div>
                       <p className="text-xs text-muted-foreground">VIN</p>
