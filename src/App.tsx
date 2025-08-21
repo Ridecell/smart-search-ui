@@ -60,7 +60,7 @@ function App() {
 
     setLoading(true);
     setError(null);
-    setResult(null);
+    // Don't clear result immediately - keep showing previous results until new ones arrive
 
     // Simulate network delay for better UX
     await new Promise(resolve => setTimeout(resolve, 800));
@@ -124,8 +124,8 @@ function App() {
       {/* Main Content */}
       <div className="flex-1 flex flex-col items-center justify-center">
         <div className="w-full max-w-6xl space-y-8">
-          {/* Logo and Title - Only show when no results */}
-          {!result && (
+          {/* Logo and Title - Only show when no results and not loading */}
+          {!result && !loading && (
             <div className="text-center space-y-4">
               <div className="flex justify-center">
                 <div className="p-3 bg-primary/10 rounded-full">
