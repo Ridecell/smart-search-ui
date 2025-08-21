@@ -122,7 +122,7 @@ function App() {
       </div>
 
       {/* Main Content */}
-      <div className={`flex-1 flex flex-col items-center ${!result && !loading ? 'justify-center pb-20' : 'justify-start pt-8'}`}>
+      <div className={`flex-1 flex flex-col items-center ${!result && !loading ? 'justify-center pb-32' : 'justify-start pt-8'}`}>
         <div className={`w-full max-w-6xl ${!result && !loading ? '' : 'space-y-8'}`}>
           {/* Title - Only show when no results */}
           {!result && !loading && (
