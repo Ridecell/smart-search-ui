@@ -1,0 +1,9 @@
+{
+  "answer": "This is a 2022 Ford F-350 Super Duty Crew Cab pickup truck.\n\n**Key Details:**\n- VIN: 1FTBW3U82NKA31819\n- Make: Ford\n- Model: F-350 Super Duty\n- Year: 2022\n- Body Style: Crew Cab Pickup\n- Engine: 6.7L V8 Turbo Diesel\n- Drivetrain: 4WD\n- Transmission: 10-Speed Automatic\n- Color: Oxford White\n- Interior: Black Leather\n\n**Features:**\n- Towing Capacity: 21,200 lbs\n- Payload Capacity: 7,850 lbs\n- Fuel Economy: 15 city / 19 highway MPG\n- Seating Capacity: 6 passengers\n- Bed Length: 8 feet\n\n**Safety Features:**\n- Adaptive Cruise Control\n- Blind Spot Monitoring\n- Lane Keeping Assist\n- Automatic Emergency Braking\n- 360-Degree Camera System\n\n**Technology:**\n- 12-inch Touchscreen Display\n- Apple CarPlay/Android Auto\n- Built-in Navigation\n- Premium Audio System\n- Wi-Fi Hotspot\n\n**Condition:**\n- Mileage: 45,230 miles\n- Service History: Regular maintenance performed\n- No accidents reported\n- Clean title\n\nThis vehicle is well-suited for heavy-duty work applications and towing needs.",
+  "metadata": {
+    "vin": "1FTBW3U82NKA31819",
+    "query_time": "2024-01-15T10:30:00Z",
+    "data_sources": ["DMV", "Manufacturer Database", "Service Records"],
+    "confidence_score": 0.95
+  }
+}
