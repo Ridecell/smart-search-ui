@@ -124,8 +124,8 @@ function App() {
       {/* Main Content */}
       <div className="flex-1 flex flex-col items-center justify-center">
         <div className="w-full max-w-6xl space-y-8">
-          {/* Logo and Title - Only show when no results and not loading */}
-          {!result && !loading && (
+          {/* Logo and Title - Only show when no results */}
+          {!result && (
             <div className="text-center space-y-4">
               <div className="flex justify-center">
                 <div className="p-3 bg-primary/10 rounded-full">
@@ -166,7 +166,7 @@ function App() {
             </div>
           </form>
 
-          {/* Loading State */}
+          {/* Loading State - Only show spinner on first load */}
           {loading && !result && (
             <div className="text-center space-y-3 animate-in fade-in-0 slide-in-from-bottom-4 duration-300 relative z-10">
               <div className="flex justify-center">
@@ -184,11 +184,41 @@ function App() {
             </div>
           )}
 
-          {/* Results */}
-          {result && !loading && (
+          {/* Results or Loading Placeholders */}
+          {(result || (loading && result)) && (
             <div className="flex gap-6 animate-in fade-in-0 slide-in-from-bottom-4 duration-300">
-              {/* Profile Tile */}
-              {result.profile && (
+              {/* Profile Tile or Skeleton */}
+              {loading ? (
+                <div className="bg-card border rounded-lg p-5 w-[320px] flex-shrink-0 h-fit">
+                  <div className="h-4 w-32 shimmer rounded mb-4"></div>
+                  <div className="space-y-3">
+                    <div>
+                      <div className="h-3 w-8 shimmer rounded mb-1"></div>
+                      <div className="h-4 w-40 shimmer rounded"></div>
+                    </div>
+                    <div>
+                      <div className="h-3 w-20 shimmer rounded mb-1"></div>
+                      <div className="h-4 w-24 shimmer rounded"></div>
+                    </div>
+                    <div>
+                      <div className="h-3 w-24 shimmer rounded mb-1"></div>
+                      <div className="h-4 w-48 shimmer rounded"></div>
+                    </div>
+                    <div>
+                      <div className="h-3 w-20 shimmer rounded mb-1"></div>
+                      <div className="h-4 w-36 shimmer rounded"></div>
+                    </div>
+                    <div>
+                      <div className="h-3 w-16 shimmer rounded mb-1"></div>
+                      <div className="h-4 w-28 shimmer rounded"></div>
+                    </div>
+                    <div>
+                      <div className="h-3 w-20 shimmer rounded mb-1"></div>
+                      <div className="h-4 w-44 shimmer rounded"></div>
+                    </div>
+                  </div>
+                </div>
+              ) : result.profile && (
                 <div className="bg-card border rounded-lg p-5 w-[320px] flex-shrink-0 h-fit">
                   <h3 className="text-sm font-semibold text-muted-foreground mb-4 uppercase tracking-wider">Vehicle Profile</h3>
                   <div className="space-y-3">
@@ -277,10 +307,29 @@ function App() {
                 </div>
               )}
               
-              {/* Main Content */}
-              <div className="bg-card border rounded-lg p-6 space-y-4 flex-1">
-                <h2 className="text-xl font-semibold text-foreground">Vehicle Information</h2>
-                <div className="prose prose-sm prose-slate dark:prose-invert max-w-none">
+              {/* Main Content or Skeleton */}
+              {loading ? (
+                <div className="bg-card border rounded-lg p-6 space-y-4 flex-1">
+                  <div className="h-6 w-48 shimmer rounded mb-4"></div>
+                  <div className="space-y-3">
+                    <div className="h-4 w-full shimmer rounded"></div>
+                    <div className="h-4 w-5/6 shimmer rounded"></div>
+                    <div className="h-4 w-4/5 shimmer rounded"></div>
+                    <div className="h-4 w-full shimmer rounded"></div>
+                    <div className="h-4 w-3/4 shimmer rounded"></div>
+                    <div className="mt-6 h-5 w-32 shimmer rounded"></div>
+                    <div className="h-4 w-full shimmer rounded"></div>
+                    <div className="h-4 w-5/6 shimmer rounded"></div>
+                    <div className="mt-6 h-5 w-36 shimmer rounded"></div>
+                    <div className="h-4 w-4/5 shimmer rounded"></div>
+                    <div className="h-4 w-full shimmer rounded"></div>
+                    <div className="h-4 w-3/4 shimmer rounded"></div>
+                  </div>
+                </div>
+              ) : (
+                <div className="bg-card border rounded-lg p-6 space-y-4 flex-1">
+                  <h2 className="text-xl font-semibold text-foreground">Vehicle Information</h2>
+                  <div className="prose prose-sm prose-slate dark:prose-invert max-w-none">
                 {result.summary ? (
                   <ReactMarkdown 
                     remarkPlugins={[remarkGfm]}
@@ -350,8 +399,9 @@ function App() {
                     {JSON.stringify(result, null, 2)}
                   </pre>
                 )}
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           )}
         </div>
