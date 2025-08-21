@@ -123,11 +123,11 @@ function App() {
 
       {/* Main Content */}
       <div className={`flex-1 flex flex-col items-center ${!result && !loading ? 'justify-center' : 'justify-start pt-8'}`}>
-        <div className="w-full max-w-6xl space-y-8">
+        <div className={`w-full max-w-6xl ${!result && !loading ? '' : 'space-y-8'}`}>
           {/* Title - Only show when no results */}
           {!result && !loading && (
-            <div className="text-center space-y-4 mb-8">
-              <h1 className="text-4xl font-bold text-foreground">Smart Search</h1>
+            <div className="text-center mb-6">
+              <h1 className="text-4xl font-bold text-foreground mb-2">Smart Search</h1>
               {debugMode && (
                 <p className="text-xs text-amber-600 dark:text-amber-400">
                   Mock response mode active - returning mock data
