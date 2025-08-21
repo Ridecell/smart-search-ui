@@ -180,13 +180,82 @@ function App() {
 
           {/* Results */}
           {result && !loading && (
-            <div className="bg-card border rounded-lg p-6 space-y-4 animate-in fade-in-0 slide-in-from-bottom-4 duration-300">
-              <h2 className="text-xl font-semibold text-foreground">Vehicle Information</h2>
-              <div className="prose prose-sm prose-slate dark:prose-invert max-w-none">
+            <div className="flex gap-6 animate-in fade-in-0 slide-in-from-bottom-4 duration-300">
+              {/* Profile Tile */}
+              {result.profile && (
+                <div className="bg-card border rounded-lg p-5 min-w-[280px] h-fit">
+                  <h3 className="text-sm font-semibold text-muted-foreground mb-4 uppercase tracking-wider">Vehicle Profile</h3>
+                  <div className="space-y-3">
+                    <div>
+                      <p className="text-xs text-muted-foreground">VIN</p>
+                      <p className="font-mono text-sm font-medium">{result.profile.vin || result.vin || "N/A"}</p>
+                    </div>
+                    {result.profile.plate && (
+                      <div>
+                        <p className="text-xs text-muted-foreground">License Plate</p>
+                        <p className="text-sm font-medium">{result.profile.plate}</p>
+                      </div>
+                    )}
+                    {(result.profile.make || result.profile.model) && (
+                      <div>
+                        <p className="text-xs text-muted-foreground">Make/Model</p>
+                        <p className="text-sm font-medium">
+                          {result.profile.make || "Unknown"} {result.profile.model || ""}
+                        </p>
+                      </div>
+                    )}
+                    {result.profile.current_stage && (
+                      <div>
+                        <p className="text-xs text-muted-foreground">Current Stage</p>
+                        <p className="text-sm font-medium">{result.profile.current_stage}</p>
+                      </div>
+                    )}
+                    {result.profile.current_step && (
+                      <div>
+                        <p className="text-xs text-muted-foreground">Current Step</p>
+                        <p className="text-sm font-medium">{result.profile.current_step}</p>
+                      </div>
+                    )}
+                    {result.profile.step_status && (
+                      <div>
+                        <p className="text-xs text-muted-foreground">Step Status</p>
+                        <div className="flex items-center gap-2 mt-1">
+                          <div className={`h-2 w-2 rounded-full ${
+                            result.profile.step_status === 'completed' ? 'bg-green-500' : 
+                            result.profile.step_status === 'in_progress' ? 'bg-yellow-500' : 
+                            'bg-gray-400'
+                          }`} />
+                          <p className="text-sm font-medium capitalize">{result.profile.step_status}</p>
+                        </div>
+                      </div>
+                    )}
+                    {result.profile.last_event_at && (
+                      <div>
+                        <p className="text-xs text-muted-foreground">Last Event</p>
+                        <p className="text-sm font-medium">
+                          {(() => {
+                            const dateObj = result.profile.last_event_at;
+                            if (dateObj._DateTime__date) {
+                              const date = dateObj._DateTime__date;
+                              const time = dateObj._DateTime__time;
+                              return `${date._Date__year}-${String(date._Date__month).padStart(2, '0')}-${String(date._Date__day).padStart(2, '0')} ${String(time._Time__hour).padStart(2, '0')}:${String(time._Time__minute).padStart(2, '0')}`;
+                            }
+                            return "N/A";
+                          })()}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
+              
+              {/* Main Content */}
+              <div className="bg-card border rounded-lg p-6 space-y-4 flex-1">
+                <h2 className="text-xl font-semibold text-foreground">Vehicle Information</h2>
+                <div className="prose prose-sm prose-slate dark:prose-invert max-w-none">
                 {result.summary ? (
                   <ReactMarkdown 
                     remarkPlugins={[remarkGfm]}
-                    className="text-muted-foreground"
                     components={{
                       h1: ({children}) => <h1 className="text-2xl font-bold mt-6 mb-4 text-foreground">{children}</h1>,
                       h2: ({children}) => <h2 className="text-xl font-semibold mt-5 mb-3 text-foreground">{children}</h2>,
@@ -203,7 +272,6 @@ function App() {
                 ) : typeof result === 'string' ? (
                   <ReactMarkdown 
                     remarkPlugins={[remarkGfm]}
-                    className="text-muted-foreground"
                     components={{
                       h1: ({children}) => <h1 className="text-2xl font-bold mt-6 mb-4 text-foreground">{children}</h1>,
                       h2: ({children}) => <h2 className="text-xl font-semibold mt-5 mb-3 text-foreground">{children}</h2>,
@@ -220,7 +288,6 @@ function App() {
                 ) : result.answer ? (
                   <ReactMarkdown 
                     remarkPlugins={[remarkGfm]}
-                    className="text-muted-foreground"
                     components={{
                       h1: ({children}) => <h1 className="text-2xl font-bold mt-6 mb-4 text-foreground">{children}</h1>,
                       h2: ({children}) => <h2 className="text-xl font-semibold mt-5 mb-3 text-foreground">{children}</h2>,
@@ -237,7 +304,6 @@ function App() {
                 ) : result.message ? (
                   <ReactMarkdown 
                     remarkPlugins={[remarkGfm]}
-                    className="text-muted-foreground"
                     components={{
                       h1: ({children}) => <h1 className="text-2xl font-bold mt-6 mb-4 text-foreground">{children}</h1>,
                       h2: ({children}) => <h2 className="text-xl font-semibold mt-5 mb-3 text-foreground">{children}</h2>,
@@ -256,6 +322,7 @@ function App() {
                     {JSON.stringify(result, null, 2)}
                   </pre>
                 )}
+                </div>
               </div>
             </div>
           )}
