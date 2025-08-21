@@ -167,12 +167,11 @@ function App() {
           </form>
 
           {/* Loading State */}
-          {loading && (
+          {loading && !result && (
             <div className="text-center space-y-3 animate-in fade-in-0 slide-in-from-bottom-4 duration-300 relative z-10">
               <div className="flex justify-center">
                 <Loader2 className="h-8 w-8 animate-spin text-primary" />
               </div>
-              <p className="text-muted-foreground font-medium">AI is analyzing vehicle data...</p>
             </div>
           )}
 
