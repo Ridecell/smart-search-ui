@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Search, Loader2, Bug, Sparkles } from "lucide-react";
+import { Search, Loader2, Bug } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -102,25 +102,12 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted/20 flex flex-col p-4">
-      {/* AI Magic Wave Animation */}
+      {/* AI Progress Bar Animation */}
       {loading && (
-        <div className="ai-wave">
-          <div className="wave"></div>
-          <div className="wave"></div>
-          <div className="wave"></div>
-          {/* Sparkles */}
-          {[...Array(12)].map((_, i) => (
-            <Sparkles
-              key={i}
-              className="sparkle text-primary"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 1.5}s`,
-                fontSize: `${Math.random() * 20 + 10}px`
-              }}
-            />
-          ))}
+        <div className="ai-progress-bar">
+          <div className="progress-bar-fill">
+            <div className="progress-glow"></div>
+          </div>
         </div>
       )}
       {/* Mock Response Toggle - Top Right */}
@@ -182,10 +169,8 @@ function App() {
           {/* Loading State */}
           {loading && (
             <div className="text-center space-y-3 animate-in fade-in-0 slide-in-from-bottom-4 duration-300 relative z-10">
-              <div className="flex justify-center items-center gap-2">
-                <Sparkles className="h-6 w-6 text-primary animate-pulse" />
+              <div className="flex justify-center">
                 <Loader2 className="h-8 w-8 animate-spin text-primary" />
-                <Sparkles className="h-6 w-6 text-primary animate-pulse" />
               </div>
               <p className="text-muted-foreground font-medium">AI is analyzing vehicle data...</p>
             </div>

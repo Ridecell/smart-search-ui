@@ -101,87 +101,76 @@
 }
 
 @layer components {
-  .ai-wave {
+  .ai-progress-bar {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    pointer-events: none;
+    height: 3px;
     z-index: 50;
     overflow: hidden;
+    background: rgba(0, 0, 0, 0.05);
   }
   
-  .wave {
-    position: absolute;
-    width: 200%;
+  .progress-bar-fill {
     height: 100%;
-    top: 0;
-    left: -100%;
+    width: 100%;
     background: linear-gradient(
       90deg,
-      transparent,
-      rgba(139, 92, 246, 0.1),
-      rgba(236, 72, 153, 0.1),
-      rgba(59, 130, 246, 0.1),
-      rgba(16, 185, 129, 0.1),
-      rgba(251, 191, 36, 0.1),
-      rgba(239, 68, 68, 0.1),
-      transparent
+      #8b5cf6,
+      #3b82f6,
+      #06b6d4,
+      #10b981,
+      #eab308,
+      #f97316,
+      #ef4444,
+      #ec4899,
+      #8b5cf6
     );
-    animation: wave-animation 2s ease-in-out infinite;
+    background-size: 200% 100%;
+    animation: progress-flow 2s linear infinite, color-shift 3s ease-in-out infinite;
+    box-shadow: 0 1px 8px rgba(139, 92, 246, 0.4);
   }
   
-  .wave:nth-child(2) {
-    animation-delay: 0.2s;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(59, 130, 246, 0.08),
-      rgba(139, 92, 246, 0.08),
-      rgba(236, 72, 153, 0.08),
-      rgba(251, 191, 36, 0.08),
-      rgba(16, 185, 129, 0.08),
-      transparent
-    );
-  }
-  
-  .wave:nth-child(3) {
-    animation-delay: 0.4s;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(236, 72, 153, 0.06),
-      rgba(251, 191, 36, 0.06),
-      rgba(139, 92, 246, 0.06),
-      rgba(16, 185, 129, 0.06),
-      rgba(59, 130, 246, 0.06),
-      transparent
-    );
-  }
-  
-  @keyframes wave-animation {
+  @keyframes progress-flow {
     0% {
       transform: translateX(-100%);
     }
     100% {
-      transform: translateX(100%);
+      transform: translateX(0);
     }
   }
   
-  .sparkle {
-    position: absolute;
-    animation: sparkle-animation 1.5s ease-in-out infinite;
-  }
-  
-  @keyframes sparkle-animation {
+  @keyframes color-shift {
     0%, 100% {
-      opacity: 0;
-      transform: scale(0) rotate(0deg);
+      background-position: 0% 50%;
     }
     50% {
-      opacity: 1;
-      transform: scale(1) rotate(180deg);
+      background-position: 100% 50%;
+    }
+  }
+  
+  .progress-glow {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.8),
+      transparent
+    );
+    animation: glow-move 1.5s linear infinite;
+  }
+  
+  @keyframes glow-move {
+    0% {
+      transform: translateX(-100vw);
+    }
+    100% {
+      transform: translateX(100vw);
     }
   }
 }
