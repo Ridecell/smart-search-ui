@@ -273,6 +273,10 @@ function App() {
                           <div className={`h-2 w-2 rounded-full ${
                             result.profile.step_status === 'completed' ? 'bg-green-500' : 
                             result.profile.step_status === 'in_progress' ? 'bg-yellow-500' : 
+                            result.profile.step_status === 'in_queue' ? 'bg-blue-500' :
+                            result.profile.step_status === 'open' ? 'bg-purple-500' :
+                            result.profile.step_status === 'monitor_update' ? 'bg-orange-500' :
+                            result.profile.step_status === 'skipped' ? 'bg-gray-500' :
                             'bg-gray-400'
                           }`} />
                           <p className="text-sm font-medium capitalize">{result.profile.step_status}</p>
