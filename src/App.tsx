@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Search, Loader2, Bug } from "lucide-react";
+import { Search, Loader2, Bug, X } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -144,10 +144,21 @@ function App() {
                 value={vin}
                 onChange={(e) => setVin(e.target.value)}
                 placeholder="Search by VIN for a smart summary..."
-                className="w-full px-6 py-4 text-lg bg-card border border-input rounded-full shadow-sm focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-200 pr-14"
+                className={`w-full px-6 py-4 text-lg bg-card border border-input rounded-full shadow-sm focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-200 ${vin ? 'pr-24' : 'pr-14'}`}
                 style={{ '--tw-ring-color': '#6cc04a' } as React.CSSProperties}
                 disabled={loading}
               />
+              {/* Clear button */}
+              {vin && (
+                <button
+                  type="button"
+                  onClick={() => setVin('')}
+                  className="absolute right-14 top-1/2 -translate-y-1/2 p-1.5 text-muted-foreground hover:text-foreground transition-colors"
+                  aria-label="Clear search"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              )}
               <button
                 type="submit"
                 disabled={loading || !vin.trim()}
