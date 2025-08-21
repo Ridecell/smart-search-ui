@@ -102,14 +102,14 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted/20 flex flex-col p-4">
-      {/* Debug Toggle - Top Right */}
+      {/* Mock Response Toggle - Top Right */}
       <div className="absolute top-4 right-4 flex items-center space-x-2 bg-card/90 backdrop-blur-sm border rounded-lg px-3 py-2">
         <Bug className="h-4 w-4 text-muted-foreground" />
-        <span className="text-sm font-medium text-muted-foreground">Debug</span>
+        <span className="text-sm font-medium text-muted-foreground">Mock Response</span>
         <Switch
           checked={debugMode}
           onCheckedChange={setDebugMode}
-          aria-label="Toggle debug mode"
+          aria-label="Toggle mock response mode"
         />
       </div>
 
@@ -129,7 +129,7 @@ function App() {
             </p>
             {debugMode && (
               <p className="text-xs text-amber-600 dark:text-amber-400">
-                Debug mode active - returning mock data
+                Mock response mode active - returning mock data
               </p>
             )}
           </div>
