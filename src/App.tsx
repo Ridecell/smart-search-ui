@@ -238,7 +238,29 @@ function App() {
                             if (dateObj._DateTime__date) {
                               const date = dateObj._DateTime__date;
                               const time = dateObj._DateTime__time;
-                              return `${date._Date__year}-${String(date._Date__month).padStart(2, '0')}-${String(date._Date__day).padStart(2, '0')} ${String(time._Time__hour).padStart(2, '0')}:${String(time._Time__minute).padStart(2, '0')}`;
+                              
+                              // Create a proper Date object
+                              const dateTime = new Date(
+                                date._Date__year,
+                                date._Date__month - 1, // JS months are 0-indexed
+                                date._Date__day,
+                                time._Time__hour,
+                                time._Time__minute,
+                                time._Time__second || 0
+                              );
+                              
+                              // Format with Intl.DateTimeFormat for global friendliness
+                              const formattedDate = new Intl.DateTimeFormat('en-US', {
+                                month: 'short',
+                                day: 'numeric',
+                                year: 'numeric',
+                                hour: 'numeric',
+                                minute: '2-digit',
+                                hour12: true,
+                                timeZoneName: 'short'
+                              }).format(dateTime);
+                              
+                              return formattedDate;
                             }
                             return "N/A";
                           })()}
