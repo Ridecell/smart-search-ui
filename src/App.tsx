@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Search, Loader2, Bug } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 // Mock response data
 const mockResponse = {
@@ -180,15 +182,75 @@ function App() {
           {result && !loading && (
             <div className="bg-card border rounded-lg p-6 space-y-4 animate-in fade-in-0 slide-in-from-bottom-4 duration-300">
               <h2 className="text-xl font-semibold text-foreground">Vehicle Information</h2>
-              <div className="prose prose-sm max-w-none">
+              <div className="prose prose-sm prose-slate dark:prose-invert max-w-none">
                 {result.summary ? (
-                  <div className="text-muted-foreground whitespace-pre-wrap">{result.summary}</div>
+                  <ReactMarkdown 
+                    remarkPlugins={[remarkGfm]}
+                    className="text-muted-foreground"
+                    components={{
+                      h1: ({children}) => <h1 className="text-2xl font-bold mt-6 mb-4 text-foreground">{children}</h1>,
+                      h2: ({children}) => <h2 className="text-xl font-semibold mt-5 mb-3 text-foreground">{children}</h2>,
+                      h3: ({children}) => <h3 className="text-lg font-semibold mt-4 mb-2 text-foreground">{children}</h3>,
+                      p: ({children}) => <p className="text-muted-foreground mb-4">{children}</p>,
+                      ul: ({children}) => <ul className="list-disc ml-5 mb-4 text-muted-foreground">{children}</ul>,
+                      li: ({children}) => <li className="mb-1">{children}</li>,
+                      strong: ({children}) => <strong className="font-semibold text-foreground">{children}</strong>,
+                      hr: () => <hr className="my-6 border-border" />
+                    }}
+                  >
+                    {result.summary}
+                  </ReactMarkdown>
                 ) : typeof result === 'string' ? (
-                  <p className="text-muted-foreground whitespace-pre-wrap">{result}</p>
+                  <ReactMarkdown 
+                    remarkPlugins={[remarkGfm]}
+                    className="text-muted-foreground"
+                    components={{
+                      h1: ({children}) => <h1 className="text-2xl font-bold mt-6 mb-4 text-foreground">{children}</h1>,
+                      h2: ({children}) => <h2 className="text-xl font-semibold mt-5 mb-3 text-foreground">{children}</h2>,
+                      h3: ({children}) => <h3 className="text-lg font-semibold mt-4 mb-2 text-foreground">{children}</h3>,
+                      p: ({children}) => <p className="text-muted-foreground mb-4">{children}</p>,
+                      ul: ({children}) => <ul className="list-disc ml-5 mb-4 text-muted-foreground">{children}</ul>,
+                      li: ({children}) => <li className="mb-1">{children}</li>,
+                      strong: ({children}) => <strong className="font-semibold text-foreground">{children}</strong>,
+                      hr: () => <hr className="my-6 border-border" />
+                    }}
+                  >
+                    {result}
+                  </ReactMarkdown>
                 ) : result.answer ? (
-                  <p className="text-muted-foreground whitespace-pre-wrap">{result.answer}</p>
+                  <ReactMarkdown 
+                    remarkPlugins={[remarkGfm]}
+                    className="text-muted-foreground"
+                    components={{
+                      h1: ({children}) => <h1 className="text-2xl font-bold mt-6 mb-4 text-foreground">{children}</h1>,
+                      h2: ({children}) => <h2 className="text-xl font-semibold mt-5 mb-3 text-foreground">{children}</h2>,
+                      h3: ({children}) => <h3 className="text-lg font-semibold mt-4 mb-2 text-foreground">{children}</h3>,
+                      p: ({children}) => <p className="text-muted-foreground mb-4">{children}</p>,
+                      ul: ({children}) => <ul className="list-disc ml-5 mb-4 text-muted-foreground">{children}</ul>,
+                      li: ({children}) => <li className="mb-1">{children}</li>,
+                      strong: ({children}) => <strong className="font-semibold text-foreground">{children}</strong>,
+                      hr: () => <hr className="my-6 border-border" />
+                    }}
+                  >
+                    {result.answer}
+                  </ReactMarkdown>
                 ) : result.message ? (
-                  <p className="text-muted-foreground whitespace-pre-wrap">{result.message}</p>
+                  <ReactMarkdown 
+                    remarkPlugins={[remarkGfm]}
+                    className="text-muted-foreground"
+                    components={{
+                      h1: ({children}) => <h1 className="text-2xl font-bold mt-6 mb-4 text-foreground">{children}</h1>,
+                      h2: ({children}) => <h2 className="text-xl font-semibold mt-5 mb-3 text-foreground">{children}</h2>,
+                      h3: ({children}) => <h3 className="text-lg font-semibold mt-4 mb-2 text-foreground">{children}</h3>,
+                      p: ({children}) => <p className="text-muted-foreground mb-4">{children}</p>,
+                      ul: ({children}) => <ul className="list-disc ml-5 mb-4 text-muted-foreground">{children}</ul>,
+                      li: ({children}) => <li className="mb-1">{children}</li>,
+                      strong: ({children}) => <strong className="font-semibold text-foreground">{children}</strong>,
+                      hr: () => <hr className="my-6 border-border" />
+                    }}
+                  >
+                    {result.message}
+                  </ReactMarkdown>
                 ) : (
                   <pre className="text-sm text-muted-foreground overflow-auto">
                     {JSON.stringify(result, null, 2)}
